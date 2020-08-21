@@ -33,45 +33,61 @@ class DesktopNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-      child: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            FlatButton(
-              onPressed: () { navigateToPage(context, "/"); },
-              child: Text(
-                  "Google DSC @ UVA",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontSize: 30
-                  )
-              )
-            ),
-            Row(
-                children: <Widget>[
-                  for (PageInfo page in pages)
-                    Row(
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.1,
+      child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+          child: Container(
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  FlatButton(
+                      onPressed: () { navigateToPage(context, "/"); },
+                      child: Image(
+                        image: AssetImage("assets/images/logo.png"),
+                      )
+                  ),
+                  Row(
                       children: <Widget>[
-                        FlatButton(
-                            onPressed: () { navigateToPage(context, page.route); },
-                            child: Text(
-                                page.name,
-                                style: TextStyle(color: Colors.black)
-                            )
-                        ),
-                        SizedBox(
-                            width: 30
-                        )
+                        for (PageInfo page in pages)
+                          Row(
+                              children: <Widget>[
+                                FlatButton(
+                                    onPressed: () { navigateToPage(context, page.route); },
+                                    child: Text(
+                                        page.name,
+                                        style: TextStyle(
+                                            color: Color(0xff969696),
+                                            fontFamily: "Roboto",
+                                            fontSize: 18
+                                        )
+                                    )
+                                ),
+                                SizedBox(
+                                    width: 30
+                                )
+                              ]
+                          )
                       ]
-                    )
-                  ]
+                  )
+                ]
             )
-          ]
-        )
-      )
+          )
+      ),
     );
   }
 }
+
+/*
+decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.lerp(Alignment.bottomLeft, Alignment.bottomRight, 0),
+            end: Alignment.lerp(Alignment.topLeft, Alignment.topRight, 0),
+            colors: [
+              Color.fromRGBO(66, 133, 244, .5),
+              Color.fromRGBO(219, 68, 55, .5),
+              Color.fromRGBO(244, 160, 0, .5),
+              Color.fromRGBO(15, 157, 88, .5),
+            ]),
+      ),
+ */

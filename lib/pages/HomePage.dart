@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uvadsc_website/components/FooterBar.dart';
 import 'package:uvadsc_website/components/NavigationBar.dart';
 import 'package:uvadsc_website/data/PageInfo.dart';
 
@@ -20,27 +21,32 @@ class HomePageState extends State<HomePage> {
         body: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            child: SingleChildScrollView(
-                child: Column(
-                    children: <Widget>[
-                      NavigationBar(pages: widget.pages),
-                      Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0)
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  NavigationBar(pages: widget.pages),
+                  SingleChildScrollView(
+                      child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0),
+                              child: Column(
+                                children: [
+                                  Image(
+                                    image: AssetImage("assets/images/logo-vertical.png"),
+                                  )
+                                ],
+                              ),
+                            )
+                          ]
                       )
-                    ]
-                )
-            ),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.lerp(Alignment.bottomLeft, Alignment.bottomRight, 0),
-                  end: Alignment.lerp(Alignment.topLeft, Alignment.topRight, 0),
-                  colors: [
-                    Color.fromRGBO(66, 133, 244, .5),
-                    Color.fromRGBO(219, 68, 55, .5),
-                    Color.fromRGBO(244, 160, 0, .5),
-                    Color.fromRGBO(15, 157, 88, .5),
-                  ]),
-            ),
+                  ),
+                  Align(
+                      alignment: Alignment.bottomCenter,
+                      child: FooterBar()
+                  )
+                ]
+              )
         )
     );
   }
